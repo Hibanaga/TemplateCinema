@@ -1,0 +1,922 @@
+*::before,
+*::after,
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 10px;
+  font-family: "Montserrat", sans-serif;
+}
+
+li {
+  list-style: none;
+}
+
+header {
+  background-color: #2b2b31;
+  height: 7rem;
+  width: 100%;
+
+  -webkit-box-shadow: 0px 30px 52px -1px rgba(64, 64, 64, 0.5);
+  -moz-box-shadow: 0px 30px 52px -1px rgba(64, 64, 64, 0.5);
+  box-shadow: 0px 30px 52px -1px rgba(64, 64, 64, 0.5);
+
+  position: relative;
+}
+
+body {
+  background-color: #2b2b31;
+}
+
+.containerHeader {
+  margin: 0 auto;
+  width: 95%;
+}
+
+.rowHeader {
+  height: 7rem;
+  display: flex;
+  align-items: center;
+  // justify-content: space-around;
+}
+
+.navMenu {
+  display: flex;
+  align-items: center;
+  height: 7rem;
+  width: 60%;
+  justify-content: flex-end;
+}
+
+@mixin defaultImageStyles {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+@mixin defaultBtnsStyle {
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.mainLogo {
+  display: block;
+  background-image: url(../images/logo.svg);
+  width: 10rem;
+  height: 7rem;
+
+  @include defaultImageStyles;
+
+  background-size: 80%;
+  background-color: #28282d;
+
+  transition: 0.3s all ease;
+
+  &:hover {
+    background-color: #2b2b31;
+  }
+}
+
+.menu {
+  display: flex;
+  margin: 0 7%;
+}
+
+.liItemMenu {
+  font-size: 1.4rem;
+  // color: rgb(226, 226, 226);
+  color: rgba(255, 255, 255, 0.75);
+  margin: 0 5%;
+  transition: 0.3s all ease;
+  cursor: pointer;
+
+  text-transform: uppercase;
+
+  &:hover {
+    color: #ff55a5;
+  }
+}
+
+.activeLiItemMenu {
+  color: #ff5860;
+}
+
+.js-btn-toggleSearch {
+  background-image: url(../images/searchIconHeader.png);
+  width: 2rem;
+  height: 2rem;
+  padding: 1rem;
+
+  background-color: transparent;
+
+  @include defaultBtnsStyle;
+  @include defaultImageStyles;
+}
+
+.hiddenInputSearch {
+  border-top: 1px solid rgb(77, 77, 77);
+  width: 100%;
+  height: 6rem;
+  background-color: #2b2b31;
+  transition: 0.2s all ease;
+
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  left: 0;
+  top: 100%;
+
+  z-index: 999;
+}
+
+.toggleHiddenInputSearch {
+  visibility: visible;
+  opacity: 1;
+}
+
+.hiddenSearch {
+  width: 95%;
+  height: 5.8rem;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+
+  background-color: #28282d;
+}
+
+.js-input-searchFilm {
+  height: 6rem;
+  font-size: 1.7rem;
+  padding: 0 1rem;
+  width: 65%;
+
+  color: #fff;
+  @include defaultBtnsStyle;
+
+  background-color: transparent;
+}
+
+.js-btn-search {
+  background-image: linear-gradient(90deg, #ff55a5 0%, #ff5860 100%);
+
+  -webkit-box-shadow: 0px 0px 20px 0px rgba(255, 88, 96, 0.5);
+  -moz-box-shadow: 0px 0px 20px 0px rgba(255, 88, 96, 0.5);
+  box-shadow: 0px 0px 20px 0px rgba(255, 88, 96, 0.5);
+
+  opacity: 0.85;
+  height: 4rem;
+  width: 9rem;
+
+  @include defaultBtnsStyle;
+
+  text-transform: uppercase;
+  font-size: 1.2rem;
+  border-radius: 5px;
+  text-align: center;
+
+  font-weight: 600;
+  color: #fff;
+
+  transition: 0.3s all ease;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+/*
+  main style
+*/
+
+main {
+  margin: 5% 0;
+  min-height: 61vh;
+}
+
+.containerMain {
+  width: 95%;
+  margin: 0 auto;
+}
+
+.rowMain {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+/*
+  card film
+*/
+
+.cardFilm {
+  width: 40%;
+  min-height: 25rem;
+  // background-color: #ff55a5;
+  transition: 0.3s all ease;
+
+  margin: 2% 0;
+
+  position: relative;
+}
+
+.btnStyleCardImg {
+  position: absolute;
+
+  background-image: linear-gradient(90deg, #ff55a5 0%, #ff5860 100%);
+
+  -webkit-box-shadow: 0px 0px 20px 0px rgba(255, 88, 96, 0.5);
+  -moz-box-shadow: 0px 0px 20px 0px rgba(255, 88, 96, 0.5);
+  box-shadow: 0px 0px 20px 0px rgba(255, 88, 96, 0.5);
+
+  width: 90%;
+  padding: 0.2rem 0.4rem;
+  z-index: 2;
+
+  @include defaultBtnsStyle;
+
+  color: #fff;
+  font-weight: 500;
+  border-radius: 4px;
+
+  visibility: hidden;
+  opacity: 0;
+}
+
+.js-btn-watched {
+  left: 5%;
+  top: 35%;
+
+  &::before {
+    content: "add to watched";
+  }
+}
+
+.js-btn-queue {
+  &::before {
+    content: "add to queue";
+  }
+
+  left: 5%;
+  top: 58%;
+}
+
+.btnActiveWatched {
+  &::before {
+    content: "delete from watched";
+  }
+}
+
+.btnActiveQueue {
+  &::before {
+    content: "delete from queue";
+  }
+}
+
+.cardCoverFilm {
+  transition: 0.4s all ease;
+  height: 18.2rem;
+  position: relative;
+
+  &:hover::before {
+    opacity: 0.65;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    background-image: linear-gradient(90deg, #ff55a5 0%, #ff5860 100%);
+    -webkit-box-shadow: 0px 0px 20px 0px rgba(255, 88, 96, 0.5);
+    -moz-box-shadow: 0px 0px 20px 0px rgba(255, 88, 96, 0.5);
+    box-shadow: 0px 0px 20px 0px rgba(255, 88, 96, 0.5);
+    z-index: 1;
+    opacity: 0;
+    transition: 0.4s all ease;
+  }
+
+  &:hover .js-btn-watched {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  &:hover .js-btn-queue {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+.imgCard {
+  width: 100%;
+  height: 18.2rem;
+}
+
+.titleFilm {
+  font-size: 1.6rem;
+  font-weight: 500;
+
+  color: #fff;
+  padding: 4% 0;
+}
+
+.genreList {
+  background-image: -webkit-linear-gradient(0deg, #ff55a5 0%, #ff5860 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: #ff5860;
+
+  font-size: 1.3rem;
+  word-wrap: break-word;
+}
+
+.cardRatingFilm {
+  height: 2.5rem;
+
+  display: flex;
+  align-items: center;
+}
+
+.ratingCount {
+  font-size: 1.6rem;
+  margin: 0 4%;
+  font-weight: 600;
+  color: #fff;
+}
+/*
+  end card film style
+*/
+
+// .js-input-number {
+//   -webkit-appearance: none;
+// }
+
+/*
+Footer
+*/
+
+footer {
+  height: 10rem;
+  width: 100%;
+  background-color: #28282d;
+}
+
+.containerFooter {
+  width: 95%;
+  margin: 0 auto;
+}
+
+.rowFooter {
+  height: 10rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.linkFooter {
+  font-size: 2rem;
+
+  text-decoration: none;
+  font-weight: 600;
+
+  color: #fff;
+
+  transition: 0.4s all ease;
+
+  &:hover {
+    color: #ff55a5;
+  }
+}
+
+.menuCover {
+  width: 80%;
+  margin-left: -15rem;
+}
+
+/*
+  pagination js styles
+*/
+
+.paginationjs-pages > ul {
+  display: flex;
+}
+
+.paginationjs-page {
+  & > a {
+    font-size: 2rem;
+    color: #fff;
+
+    text-decoration: none;
+  }
+
+  margin: 0.5rem;
+  padding: 0.7rem 1rem;
+  // background-image: -webkit-linear-gradient(0deg, #ff55a5 0%, #ff5860 100%);
+  // -webkit-background-clip: text;
+  // -webkit-text-fill-color: transparent;
+
+  // color: #fff;
+
+  transition: 0.4s all ease;
+
+  &:hover {
+    color: #ff55a5;
+  }
+}
+
+.active {
+  background-color: #ff5860;
+  border-radius: 4px;
+}
+
+@mixin defaultBtnsStyle {
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+@mixin defaultImageStyles {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.paginationInfo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.inputSearch {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60%;
+}
+
+.btnPagination {
+  //   color: #fff;
+  margin: 1rem;
+
+  width: 3rem;
+  height: 3rem;
+  @include defaultBtnsStyle;
+  @include defaultImageStyles;
+
+  background-color: transparent;
+
+  &:disabled {
+    opacity: 0.65;
+  }
+
+  &:active {
+    background-color: #fff;
+  }
+}
+
+.js-btn-prev {
+  background-image: url("../images/arrow.png");
+  transform: rotate(180deg);
+}
+
+.js-btn-next {
+  background-image: url("../images/arrow.png");
+}
+
+.js-input-searchPage {
+  width: 50%;
+  color: #fff;
+  font-size: 1.5rem;
+  padding: 0.4rem 0.6rem;
+
+  outline: none;
+
+  background-color: #28282d;
+}
+
+.spanAllPages {
+  margin: 0 1rem;
+  color: #fff;
+  font-size: 1.5rem;
+}
+
+/*
+  current film style
+*/
+
+.filmInfo {
+  width: 95%;
+
+  margin: 0 auto;
+}
+
+.wrapperInfoFilm {
+  display: flex;
+}
+
+.imgCardFilm {
+  width: 50%;
+}
+
+.infoFilm {
+  margin: 2%;
+  width: 48%;
+}
+
+.nameFilm {
+  width: 110%;
+
+  font-size: 1.8rem;
+  color: #fff;
+}
+
+.spanGenres {
+  font-size: 1.4rem;
+  margin: 2% 0 2% 3%;
+}
+
+.descriptionFilm {
+  display: block;
+  width: 95%;
+  margin: 3% auto;
+  text-align: justify;
+
+  font-size: 1.5rem;
+  color: #fff;
+
+  &::first-letter {
+    padding-left: 1rem;
+  }
+}
+
+/*
+about page
+*/
+
+.cardProfile {
+  width: 100%;
+}
+
+.imgProfileAbout {
+  display: block;
+
+  @include defaultImageStyles;
+
+  background-image: url("../assets/MePhoto.jpg");
+  width: 80%;
+  height: 80vh;
+
+  margin: 0 auto;
+}
+
+.h1TitleNameAbout {
+  color: #fff;
+  text-align: center;
+  font-size: 2.5rem;
+  margin: 2%;
+}
+
+.positionAboutPortfolio {
+  font-size: 1.5rem;
+}
+
+.descriptionAbout {
+  display: block;
+
+  color: #fff;
+  width: 80%;
+
+  margin: 2% auto;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+/*
+  min-width: 375px
+*/
+
+@media (min-width: 375px) {
+  .imgCard {
+    height: 22rem;
+  }
+
+  .cardCoverFilm {
+    height: 22rem;
+  }
+
+  .btnStyleCardImg {
+    padding: 0.5rem 1rem;
+  }
+
+  .titleFilm {
+    font-size: 1.8rem;
+  }
+
+  .nameFilm {
+    font-size: 2rem;
+  }
+
+  .spanGenres {
+    display: block;
+    margin: 1.2rem 0.5rem;
+    font-size: 1.6rem;
+  }
+
+  .cardRatingFilm {
+    margin: 0.2rem 0.5rem;
+  }
+
+  .descriptionFilm {
+    font-size: 1.7rem;
+    line-height: 1.5;
+  }
+}
+
+@media (min-width: 425px) {
+  .imgCard {
+    height: 25rem;
+  }
+
+  .cardCoverFilm {
+    height: 25rem;
+  }
+
+  .titleFilm {
+    font-size: 2rem;
+  }
+
+  .btnStyleCardImg {
+    font-size: 1.4rem;
+  }
+
+  .liItemMenu {
+    font-size: 1.7rem;
+  }
+
+  .js-btn-toggleSearch {
+    height: 2.5rem;
+    width: 2.5rem;
+  }
+
+  .mainLogo {
+    width: 12rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .cardFilm {
+    width: 30%;
+  }
+
+  .imgCard {
+    height: 33rem;
+  }
+
+  .cardCoverFilm {
+    height: 33rem;
+  }
+
+  .btnStyleCardImg {
+    font-size: 2.1rem;
+  }
+
+  .navMenu {
+    width: 80%;
+  }
+
+  .paginationInfo {
+    margin: 2%;
+    height: 7rem;
+  }
+
+  .btnPagination {
+    width: 5rem;
+    height: 5rem;
+  }
+
+  .js-btn-prev {
+    width: 5rem;
+    height: 5rem;
+  }
+
+  .inputSearch {
+    width: 70%;
+  }
+
+  .js-input-searchPage {
+    width: 65%;
+    padding: 1rem 1.5rem;
+    font-size: 2.5rem;
+  }
+
+  .nameFilm {
+    font-size: 3.5rem;
+  }
+
+  .spanGenres {
+    font-size: 2rem;
+  }
+
+  .genreList {
+    margin: 1rem 0;
+    font-size: 1.8rem;
+  }
+
+  .cardRatingFilm {
+    margin: 0;
+    margin-top: 1rem;
+  }
+
+  .svgIconStar {
+    width: 2.2rem;
+    height: 2.2rem;
+  }
+
+  .ratingCount {
+    font-size: 2.5rem;
+  }
+
+  .titleFilm {
+    font-size: 2.6rem;
+  }
+
+  .imgProfileAbout {
+    background-size: cover;
+    height: 70rem;
+    width: 80%;
+  }
+
+  .h1TitleNameAbout {
+    font-size: 3rem;
+  }
+
+  .descriptionAbout {
+    font-size: 2.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .cardFilm {
+    width: 23%;
+  }
+
+  .liItemMenu {
+    font-size: 2.2rem;
+  }
+
+  .js-btn-search {
+    font-size: 1.5rem;
+  }
+
+  .js-input-searchFilm {
+    font-size: 1.8rem;
+  }
+
+  .mainLogo {
+    width: 15rem;
+  }
+
+  .js-btn-toggleSearch {
+    width: 3rem;
+    height: 3rem;
+  }
+}
+
+@media (min-width: 1440px) {
+  .containerHeader {
+    width: 90%;
+  }
+
+  .hiddenSearch {
+    width: 90%;
+  }
+
+  .cardFilm {
+    width: 22%;
+  }
+
+  .imgCard {
+    height: 45rem;
+  }
+
+  .cardCoverFilm {
+    height: 45rem;
+  }
+
+  .titleFilm {
+    font-size: 3.1rem;
+    letter-spacing: 0.2rem;
+  }
+
+  .imgCardFilm {
+    width: 30%;
+  }
+
+  .descriptionFilm {
+    &::first-letter {
+      padding-left: 5%;
+    }
+    font-size: 3rem;
+  }
+
+  .nameFilm {
+    font-size: 4rem;
+  }
+
+  .spanGenres {
+    font-size: 3rem;
+  }
+
+  .linkFooter {
+    font-size: 3rem;
+  }
+
+  .imgProfileAbout {
+    background-size: cover;
+    height: 100rem;
+    width: 80%;
+  }
+}
+
+@media (min-width: 1920px) {
+  .cardFilm {
+    width: 18%;
+  }
+
+  .imgCard {
+    height: 45rem;
+  }
+
+  .cardCoverFilm {
+    height: 45rem;
+  }
+
+  .titleFilm {
+    cursor: pointer;
+    transition: 0.4s all ease;
+
+    &:hover {
+      background-image: -webkit-linear-gradient(0deg, #ff55a5 0%, #ff5860 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  }
+
+  .imgProfileAbout {
+    background-size: cover;
+    height: 100rem;
+    width: 50%;
+  }
+
+  .menuCover {
+    margin-left: 40rem;
+  }
+
+  .watched {
+    margin-left: 50rem;
+  }
+
+  .imgCardFilm {
+    width: 20%;
+  }
+
+  .wrapperInfoFilm {
+    justify-content: center;
+  }
+
+  .spanAllPages {
+    font-size: 3rem;
+  }
+
+  .containerMain {
+    width: 85%;
+  }
+}
+
+.titleFilm {
+  cursor: pointer;
+  transition: 0.4s all ease;
+
+  &:hover {
+    color: #ff55a5;
+  }
+}
+
+.activePreloader {
+  display: none;
+}
+
+.js-input-searchPage {
+  &::-webkit-inner-spin-button,
+  &::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
